@@ -1,0 +1,102 @@
+openapi: 3.0.3
+info:
+  title: Golyv Fleet Booking API
+  version: 1.0.0
+  description: RESTful API for segment-aware bus seat booking across Egypt routes.
+servers:
+  - url: http://localhost:8000/api
+paths:
+  /trips:
+    get:
+      summary: List trips
+      operationId: listTrips
+      responses:
+        "200":
+          description: Trip collection with ordered stations
+  /trips/{trip}:
+    get:
+      summary: Get a trip
+      operationId: getTrip
+      parameters:
+        - name: trip
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Trip detail
+        "404":
+          description: Trip not found
+  /trips/{trip}/available-seats:
+    get:
+      summary: Get available seats for a trip segment
+      operationId: getAvailableSeats
+      parameters:
+        - name: trip
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: start_station_id
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: end_station_id
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Seat availability for the segment
+        "422":
+          description: Invalid trip segment
+        "404":
+          description: Trip not found
+  /bookings:
+    post:
+      summary: Book a seat
+      operationId: createBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - trip_id
+                - seat_id
+                - start_station_id
+                - end_station_id
+                - customer_name
+                - customer_email
+              properties:
+                trip_id:
+                  type: integer
+                seat_id:
+                  type: integer
+                start_station_id:
+                  type: integer
+                end_station_id:
+                  type: integer
+                customer_name:
+                  type: string
+                customer_email:
+                  type: string
+                  format: email
+            example:
+              trip_id: 1
+              seat_id: 1
+              start_station_id: 1
+              end_station_id: 4
+              customer_name: Youssof Okiel
+              customer_email: youssof@example.com
+      responses:
+        "201":
+          description: Booking created
+        "409":
+          description: Seat unavailable due to overlap or race
+        "422":
+          description: Validation or segment error

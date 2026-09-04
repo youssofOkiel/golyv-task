@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/Users/youssofokiel/.config/herd-lite/bin/php",
+            "args": [
+                "/Users/youssofokiel/develop/bus-booking-system/backend/artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}

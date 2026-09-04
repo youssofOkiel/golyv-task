@@ -1,0 +1,54 @@
+{
+  "info": {
+    "_postman_id": "golyv-fleet-booking",
+    "name": "Golyv Fleet Booking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List trips",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{baseUrl}}/trips"
+      }
+    },
+    {
+      "name": "Get available seats",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/trips/1/available-seats?start_station_id=1&end_station_id=4",
+          "host": ["{{baseUrl}}"],
+          "path": ["trips", "1", "available-seats"],
+          "query": [
+            { "key": "start_station_id", "value": "1" },
+            { "key": "end_station_id", "value": "4" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Book a seat",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"trip_id\": 1,\n  \"seat_id\": 1,\n  \"start_station_id\": 1,\n  \"end_station_id\": 4,\n  \"customer_name\": \"Youssof Okiel\",\n  \"customer_email\": \"youssof@example.com\"\n}"
+        },
+        "url": "{{baseUrl}}/bookings"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api"
+    }
+  ]
+}
