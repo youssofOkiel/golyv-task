@@ -6,7 +6,7 @@ Senior Full Stack assessment submission: Laravel API + PostgreSQL + Next.js Type
 
 | Layer | Technology |
 |-------|------------|
-| Backend | Laravel 13 (PHP 8.3+), PostgreSQL 16 |
+| Backend | Laravel 13 (PHP 8.4+), PostgreSQL 16 |
 | Frontend | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, shadcn/ui |
 | Tests | PHPUnit (backend), Vitest + Testing Library (frontend) |
 | Tooling | Docker Compose, OpenAPI + Postman, GitHub Actions CI |
@@ -15,7 +15,7 @@ Senior Full Stack assessment submission: Laravel API + PostgreSQL + Next.js Type
 
 ### Backend (local)
 
-- PHP **8.3+** with `pdo_pgsql` (and Composer 2)
+- PHP **8.4+** with `pdo_pgsql` (and Composer 2)
 - PostgreSQL **16+** (or run Postgres via Docker only)
 
 ### Frontend (local)
@@ -310,3 +310,4 @@ So Cairo → Minya and Minya → Asyut on the same seat are allowed; overlapping
 ## Author
 
 Youssof Okiel — Golyv Senior Full Stack Engineer technical assessment.
+
